@@ -25,12 +25,26 @@ class PropertyService {
   }
 
   searchProperties(query: string): Property[] {
+    if (!query) return this.properties;
+    
     const searchTerm = query.toLowerCase();
-    return this.properties.filter(property => 
-      property.address.toLowerCase().includes(searchTerm) ||
-      property.city.toLowerCase().includes(searchTerm) ||
-      property.state.toLowerCase().includes(searchTerm)
-    );
+    const parts = searchTerm.split(',').map(part => part.trim());
+    
+    return this.properties.filter(property => {
+      // Check if the search query matches any part of the address
+      const propertyFullAddress = `${property.address}, ${property.city}, ${property.state}`.toLowerCase();
+      
+      // Check for exact match first
+      if (propertyFullAddress === searchTerm) return true;
+      
+      // Check if all parts of the search query are found in the property address
+      return parts.every(part => 
+        propertyFullAddress.includes(part) ||
+        property.address.toLowerCase().includes(part) ||
+        property.city.toLowerCase().includes(part) ||
+        property.state.toLowerCase().includes(part)
+      );
+    });
   }
 
   getPropertyById(id: string): Property | undefined {

@@ -2,6 +2,7 @@ import React from 'react';
 import { View, Text, ScrollView, StyleSheet, Dimensions } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { BarChart } from 'react-native-chart-kit';
+import PropertyStreetView from '../components/PropertyStreetView';
 
 type Property = {
   address: string;
@@ -48,6 +49,7 @@ export default function PropertyAnalyticsScreen({ route }: Props) {
       <ScrollView contentContainerStyle={styles.scrollContent}>
         <View style={styles.header}>
           <Text style={styles.propertyTitle}>{property.address}</Text>
+          <PropertyStreetView address={`${property.address}, ${property.city}, ${property.state}`} />
           <Text style={styles.propertySubtitle}>
             {property.city}, {property.state}
           </Text>
