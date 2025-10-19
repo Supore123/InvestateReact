@@ -5,7 +5,7 @@ export type RootStackParamList = {
   MainMenu: undefined;
   Search: undefined;
   Favorites: undefined;
-  Analytics: undefined;
+  Profile: undefined;
   Settings: undefined;
   PropertyAnalytics: {
     property: Property;

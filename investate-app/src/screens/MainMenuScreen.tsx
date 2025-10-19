@@ -13,8 +13,7 @@ export default function MainMenuScreen() {
   const menuItems = [
     { icon: '🔍', label: 'Search Properties', screen: 'Search' },
     { icon: '⭐', label: 'Favorites', screen: 'Favorites' },
-    { icon: '📊', label: 'Analytics', screen: 'Analytics' },
-    { icon: '⚙️', label: 'Settings', screen: 'Settings' },
+    { icon: '�', label: 'Profile', screen: 'Profile' },
   ];
 
   return (

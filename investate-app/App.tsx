@@ -1,4 +1,5 @@
 import React from 'react';
+import { TouchableOpacity, Text } from 'react-native';
 import { NavigationContainer, DarkTheme, DefaultTheme } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
@@ -9,7 +10,7 @@ import { ThemeProvider, useTheme } from './src/theme/ThemeContext';
 import MainMenuScreen from './src/screens/MainMenuScreen';
 import SearchScreen from './src/screens/SearchScreen';
 import FavoritesScreen from './src/screens/FavoritesScreen';
-import AnalyticsScreen from './src/screens/AnalyticsScreen';
+import ProfileScreen from './src/screens/ProfileScreen';
 import SettingsScreen from './src/screens/SettingsScreen';
 import PropertyAnalyticsScreen from './src/screens/PropertyAnalyticsScreen';
 
@@ -48,7 +49,7 @@ function AppContent() {
       >
         <Stack.Navigator
           initialRouteName="MainMenu"
-          screenOptions={{
+          screenOptions={({ navigation }) => ({
             headerStyle: {
               backgroundColor: colors.card,
             },
@@ -56,7 +57,15 @@ function AppContent() {
             headerLargeTitle: true,
             headerBlurEffect: isDark ? 'dark' : 'light',
             animation: 'slide_from_right',
-          }}
+            headerRight: () => (
+              <TouchableOpacity
+                onPress={() => navigation.navigate('Settings')}
+                style={{ padding: 8, marginRight: 8 }}
+              >
+                <Text style={{ fontSize: 24 }}>⚙️</Text>
+              </TouchableOpacity>
+            ),
+          })}
         >
           <Stack.Screen 
             name="MainMenu" 
@@ -74,9 +83,9 @@ function AppContent() {
             options={{ title: 'Favorites' }}
           />
           <Stack.Screen 
-            name="Analytics" 
-            component={AnalyticsScreen}
-            options={{ title: 'Analytics' }}
+            name="Profile" 
+            component={ProfileScreen}
+            options={{ title: 'Profile' }}
           />
           <Stack.Screen 
             name="Settings" 
