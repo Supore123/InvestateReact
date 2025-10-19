@@ -81,6 +81,115 @@ npx expo start --clear
 
 3. Make sure Expo Go is up to date on your device
 
+## Building and Testing
+
+### Building for Production
+
+1. Install the latest Expo EAS CLI:
+```bash
+npm install -g eas-cli
+```
+
+2. Log in to your Expo account:
+```bash
+eas login
+```
+
+3. Configure the build:
+```bash
+eas build:configure
+```
+
+4. Build for your target platform:
+```bash
+# For Android
+eas build --platform android
+# For iOS
+eas build --platform ios
+```
+
+### Testing the App
+
+#### 1. Main Menu Navigation
+- Launch the app and verify the Gold Tier membership display
+- Test both the "Family House" and "Investment" options
+- Verify the back button functionality in the Family House menu
+
+#### 2. Investment Features
+- Navigate to the Investment Hub through the main menu
+- Test each investment strategy card:
+  - Buy-to-Let
+  - Property Flip
+  - REIT Investment
+  - Commercial Property
+- Verify ROI and risk level displays
+- Test the property search functionality
+- Check market analysis section responsiveness
+
+#### 3. Property Search
+- Use the search bar to find properties
+- Test filtering by:
+  - Location
+  - Price range
+  - Property type
+- Verify property card displays:
+  - Address
+  - Price
+  - Key metrics (Cap Rate, ROI, etc.)
+
+#### 4. Property Details
+- Select a property to view detailed analytics
+- Test the street view functionality
+- Verify metrics calculations
+- Check performance chart rendering
+
+#### 5. Profile Features
+- Navigate to the Profile section
+- Verify Gold Tier membership display
+- Check stats display:
+  - Favorites count
+  - Investments count
+  - Watchlist items
+- Test recent activity updates
+
+#### 6. Theme Testing
+- Test theme toggle functionality
+- Verify UI elements in both light and dark modes
+- Check readability and contrast
+
+### Common Test Scenarios
+
+1. Investment Analysis Flow:
+```
+Main Menu → Investment → Search Properties → Property Details → Analytics
+```
+
+2. Family House Search Flow:
+```
+Main Menu → Family House → Search → Property Details
+```
+
+3. Profile Management:
+```
+Main Menu → Profile → View Stats → Recent Activity
+```
+
+### Performance Testing
+
+Run the following checks:
+1. Cold start time < 3 seconds
+2. Property search response < 1 second
+3. Street view loading < 2 seconds
+4. Theme switch < 0.5 seconds
+
+### Error Handling
+
+Test the following scenarios:
+1. No internet connection
+2. Invalid property searches
+3. Missing street view data
+4. API failures
+
 ## Contributing
 
 Feel free to open issues or submit pull requests for any improvements.
