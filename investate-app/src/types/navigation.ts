@@ -7,6 +7,7 @@ export type RootStackParamList = {
   Favorites: undefined;
   Profile: undefined;
   Settings: undefined;
+  Analytics: undefined;
   PropertyAnalytics: {
     property: Property;
   };

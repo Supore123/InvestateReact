@@ -13,6 +13,7 @@ import FavoritesScreen from './src/screens/FavoritesScreen';
 import ProfileScreen from './src/screens/ProfileScreen';
 import SettingsScreen from './src/screens/SettingsScreen';
 import PropertyAnalyticsScreen from './src/screens/PropertyAnalyticsScreen';
+import AnalyticsScreen from './src/screens/AnalyticsScreen';
 
 import { RootStackParamList } from './src/types/navigation';
 
@@ -96,6 +97,11 @@ function AppContent() {
             name="PropertyAnalytics" 
             component={PropertyAnalyticsScreen}
             options={{ title: 'Property Details' }}
+          />
+          <Stack.Screen 
+            name="Analytics" 
+            component={AnalyticsScreen}
+            options={{ title: 'Investment Hub' }}
           />
         </Stack.Navigator>
       </NavigationContainer>
