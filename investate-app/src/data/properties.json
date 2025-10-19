@@ -1,5 +1,37 @@
 [
   {
+    "id": "prop_5",
+    "address": "10 Downing Street, Westminster",
+    "city": "London",
+    "state": "Greater London",
+    "price": 3750000,
+    "bedrooms": 6,
+    "bathrooms": 4,
+    "sqft": 3800,
+    "cap_rate": 6.2,
+    "cash_flow": 8500,
+    "roi": 8.5,
+    "vacancy_rate": 1.5,
+    "type": "townhouse",
+    "last_updated": "2025-10-19"
+  },
+  {
+    "id": "prop_6",
+    "address": "Buckingham Palace, Westminster",
+    "city": "London",
+    "state": "Greater London",
+    "price": "∞",
+    "bedrooms": 775,
+    "bathrooms": 78,
+    "sqft": 830000,
+    "cap_rate": 0,
+    "cash_flow": 0,
+    "roi": 0,
+    "vacancy_rate": 0,
+    "type": "palace",
+    "last_updated": "2025-10-19"
+  },
+  {
     "id": "prop_0",
     "address": "221B Baker Street, Marylebone",
     "city": "London",
