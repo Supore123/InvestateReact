@@ -15,8 +15,9 @@ export default function ProfileScreen() {
           <View style={styles.avatarContainer}>
             <Text style={styles.avatarText}>👤</Text>
           </View>
-          <Text style={styles.name}>John Doe</Text>
-          <Text style={styles.subtitle}>Property Investor</Text>
+          <Text style={styles.name}>Jonathan Yohannes</Text>
+          <Text style={styles.subtitle}>Gold Member</Text>
+          <Text style={styles.membershipBadge}>GOLD TIER</Text>
         </View>
 
         <View style={styles.statsContainer}>
@@ -91,6 +92,13 @@ const createStyles = (colors: ThemeColors) =>
     subtitle: {
       fontSize: 16,
       color: colors.subtext,
+      marginTop: 5,
+    },
+    membershipBadge: {
+      fontSize: 18,
+      fontWeight: 'bold',
+      color: '#FFD700',
+      marginTop: 10,
     },
     statsContainer: {
       flexDirection: 'row',

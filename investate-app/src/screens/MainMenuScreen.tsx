@@ -1,42 +1,69 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, Switch } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useTheme } from '../theme/ThemeContext';
 import { createThemedStyles, type ThemeColors } from '../theme/theme';
+import LogoHeader from '../components/LogoHeader';
 
 export default function MainMenuScreen() {
   const navigation = useNavigation();
   const { isDark, colors, toggleTheme } = useTheme();
   const styles = React.useMemo(() => createStyles(colors), [colors]);
+  const [showFamilyMenu, setShowFamilyMenu] = React.useState(false);
 
   const menuItems = [
     { icon: '🔍', label: 'Search Properties', screen: 'Search' },
     { icon: '⭐', label: 'Favorites', screen: 'Favorites' },
-    { icon: '�', label: 'Profile', screen: 'Profile' },
+    { icon: '👤', label: 'Profile', screen: 'Profile' },
   ];
 
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.content}>
-        <View style={styles.header}>
-          <Text style={styles.logo}>🏠</Text>
-          <Text style={styles.title}>Investate</Text>
-          <Text style={styles.subtitle}>Smart Property Investment</Text>
-        </View>
+        <LogoHeader showMembership={true} />
+        
+        <Text style={styles.greeting}>Welcome back, Jonathan Yohannes!</Text>
 
-        <View style={styles.menuGrid}>
-          {menuItems.map((item, index) => (
+        {!showFamilyMenu ? (
+          <View style={styles.buttonContainer}>
             <TouchableOpacity
-              key={index}
-              style={styles.menuButton}
-              onPress={() => navigation.navigate(item.screen as never)}
+              style={[styles.button, styles.familyButton]}
+              onPress={() => setShowFamilyMenu(true)}
             >
-              <Text style={styles.menuIcon}>{item.icon}</Text>
-              <Text style={styles.menuLabel}>{item.label}</Text>
+              <Text style={styles.buttonText}>Family House</Text>
             </TouchableOpacity>
-          ))}
-        </View>
+
+            <TouchableOpacity
+              style={[styles.button, styles.investmentButton]}
+              onPress={() => navigation.navigate('Analytics' as never)}
+            >
+              <Text style={styles.buttonText}>Investment</Text>
+            </TouchableOpacity>
+          </View>
+        ) : (
+          <>
+            <TouchableOpacity
+              style={styles.backButton}
+              onPress={() => setShowFamilyMenu(false)}
+            >
+              <Text style={styles.backButtonText}>← Back</Text>
+            </TouchableOpacity>
+
+            <View style={styles.menuGrid}>
+              {menuItems.map((item, index) => (
+                <TouchableOpacity
+                  key={index}
+                  style={styles.menuButton}
+                  onPress={() => navigation.navigate(item.screen as never)}
+                >
+                  <Text style={styles.menuIcon}>{item.icon}</Text>
+                  <Text style={styles.menuLabel}>{item.label}</Text>
+                </TouchableOpacity>
+              ))}
+            </View>
+          </>
+        )}
       </View>
     </SafeAreaView>
   );
@@ -47,6 +74,87 @@ const createStyles = (colors: ThemeColors) =>
     container: {
       flex: 1,
       backgroundColor: colors.background,
+    },
+    content: {
+      flex: 1,
+      padding: 20,
+    },
+    greeting: {
+      fontSize: 24,
+      fontWeight: '600',
+      color: colors.text,
+      marginVertical: 30,
+      textAlign: 'center',
+    },
+    buttonContainer: {
+      width: '100%',
+      paddingHorizontal: 20,
+      gap: 20,
+    },
+    button: {
+      width: '100%',
+      height: 60,
+      borderRadius: 10,
+      justifyContent: 'center',
+      alignItems: 'center',
+      elevation: 3,
+      shadowColor: '#000',
+      shadowOffset: { width: 0, height: 2 },
+      shadowOpacity: 0.25,
+      shadowRadius: 3.84,
+    },
+    familyButton: {
+      backgroundColor: '#4CAF50',
+    },
+    investmentButton: {
+      backgroundColor: '#2196F3',
+    },
+    buttonText: {
+      color: '#FFFFFF',
+      fontSize: 18,
+      fontWeight: 'bold',
+    },
+    backButton: {
+      flexDirection: 'row',
+      alignItems: 'center',
+      paddingVertical: 10,
+      paddingHorizontal: 20,
+      marginBottom: 20,
+    },
+    backButtonText: {
+      fontSize: 18,
+      color: colors.text,
+      fontWeight: '600',
+    },
+    menuGrid: {
+      flexDirection: 'row',
+      flexWrap: 'wrap',
+      justifyContent: 'space-between',
+      paddingHorizontal: 20,
+      gap: 20,
+    },
+    menuButton: {
+      width: '45%',
+      aspectRatio: 1,
+      backgroundColor: colors.card,
+      borderRadius: 15,
+      padding: 15,
+      justifyContent: 'center',
+      alignItems: 'center',
+      elevation: 3,
+      shadowColor: '#000',
+      shadowOffset: { width: 0, height: 2 },
+      shadowOpacity: 0.25,
+      shadowRadius: 3.84,
+    },
+    menuIcon: {
+      fontSize: 32,
+      marginBottom: 10,
+    },
+    menuLabel: {
+      fontSize: 16,
+      color: colors.text,
+      textAlign: 'center',
     },
     content: {
       flex: 1,
